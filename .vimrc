@@ -1,3 +1,21 @@
+" Vundle start
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime<Plug>PeepOpenath to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'pathogen.vim'
+
+call vundle#end() "required
+filetype plugin indent on "required
+
+" Vundle end
+" Fix bug
+let g:NERDTreeDirArrows = 1
+
 set runtimepath+=~/.vim_runtime
 
 source ~/.vim_runtime/vimrcs/basic.vim
@@ -24,12 +42,4 @@ let mapleader = "\<Space>"
 :nnoremap <leader>d dd
 map q: :q
 map <leader>n :NERDTreeToggle<CR>
-set nocompatible              " be iMproved, required
-filetype off                  " required
 
-" set the runtime<Plug>PeepOpenath to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-call vundle#end() "required
-filetype plugin indent on "required
