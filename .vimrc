@@ -10,6 +10,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'pathogen.vim'
 Plugin 'The-NERD-tree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'vim-airline/vim-airline'
 
 call vundle#end() "required
 filetype plugin indent on "required
