@@ -8,6 +8,8 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'pathogen.vim'
+Plugin 'The-NERD-tree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 call vundle#end() "required
 filetype plugin indent on "required
