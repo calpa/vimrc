@@ -1,3 +1,5 @@
+let g:ale_emit_conflict_warnings = 0 "Fix conflict
+
 " Vundle start
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -11,6 +13,7 @@ Plugin 'pathogen.vim'
 Plugin 'The-NERD-tree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'vim-airline/vim-airline'
+Plugin 'w0rp/ale'
 
 call vundle#end() "required
 filetype plugin indent on "required
@@ -46,3 +49,23 @@ let mapleader = "\<Space>"
 map q: :q
 map <leader>n :NERDTreeToggle<CR>
 
+"ale settings
+"ale styles
+let g:ale_sign_error = 'E>'
+let g:ale_sign_warning = 'W>'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+"change from loclist to quickfix list
+"let g:ale_set_loclist = 0
+"let g:ale_set_quickfix = 1
+
+let g:ale_open_list = 1
+
+"javascript linter: eslint
+let g:ale_fixers = {
+            \ 'javascript': ['eslint'],
+            \}
+
+let g:ale_fix_on_save = 1 "Fix files on save
