@@ -14,6 +14,7 @@ Plugin 'The-NERD-tree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'vim-airline/vim-airline'
 Plugin 'w0rp/ale'
+Plugin 'wakatime/vim-wakatime'
 
 call vundle#end() "required
 filetype plugin indent on "required
