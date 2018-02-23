@@ -20,6 +20,29 @@ call vundle#end() "required
 filetype plugin indent on "required
 
 " Vundle end
+call plug#begin('~/.vim/plugged')
+
+" Install deoplete.nvim
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
+" Use tern to autocomplete
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+
+" Prevent git commit crash
+if &filetype != 'gitcommit'
+    "let g:deoplete#enable_at_startup = 1
+endif
+
+call plug#end()
 " Fix bug
 let g:NERDTreeDirArrows = 1
 
@@ -37,7 +60,7 @@ endtry
 
 execute pathogen#infect()
 
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 
 "Smart way to move between windows (<ctrl>j etc.):
 map <C-j> <C-W>j
