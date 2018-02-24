@@ -33,6 +33,9 @@ else
 endif
 
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'Galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
+Plug 'billyvg/deoplete-import-js'
+let g:deoplete_import_js#bin = 'importjs'
 
 Plug 'pangloss/vim-javascript'
 let g:javascript_enable_domhtmlcss = 1
@@ -69,9 +72,11 @@ source ~/.vim_runtime/my_configs.vim
 catch
 endtry
 
-execute pathogen#infect()
+" execute pathogen#infect()
 
 " autocmd vimenter * NERDTree
+
+set nu "Show line numbers
 
 "Smart way to move between windows (<ctrl>j etc.):
 map <C-j> <C-W>j
