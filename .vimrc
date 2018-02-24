@@ -20,6 +20,7 @@ call vundle#end() "required
 filetype plugin indent on "required
 
 " Vundle end
+" Vim-Plug Start
 call plug#begin('~/.vim/plugged')
 
 " Install deoplete.nvim
@@ -33,16 +34,26 @@ endif
 
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
+Plug 'pangloss/vim-javascript'
+let g:javascript_enable_domhtmlcss = 1
+
+Plug 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup = 1
+
+Plug 'mxw/vim-jsx' "react js, jsx hightlight
+
+Plug 'airblade/vim-gitgutter' "Show git diff in the gutter
+set updatetime=100
+
 " Use tern to autocomplete
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 
-" Prevent git commit crash
-if &filetype != 'gitcommit'
-    "let g:deoplete#enable_at_startup = 1
-endif
+let g:deoplete#enable_at_startup = 1
 
 call plug#end()
+" Vim-Plug End
+
 " Fix bug
 let g:NERDTreeDirArrows = 1
 
@@ -68,10 +79,12 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-let mapleader = "\<Space>"
+let mapleader = "\,"
 :nnoremap <leader>d dd
 map q: :q
 map <leader>n :NERDTreeToggle<CR>
+
+map <leader>g :GitGutterEnable<CR>
 
 "ale settings
 "ale styles
