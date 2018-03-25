@@ -13,8 +13,11 @@ Plugin 'pathogen.vim'
 Plugin 'The-NERD-tree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'w0rp/ale'
 Plugin 'wakatime/vim-wakatime'
+Plugin 'posva/vim-vue'
+Plugin 'edkolev/tmuxline.vim'
 
 call vundle#end() "required
 filetype plugin indent on "required
@@ -93,6 +96,7 @@ map <leader>g :GitGutterEnable<CR>
 
 "ale settings
 "ale styles
+let g:ale_sign_column_always = 1
 let g:ale_sign_error = 'E>'
 let g:ale_sign_warning = 'W>'
 let g:ale_echo_msg_error_str = 'E'
@@ -104,10 +108,52 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "let g:ale_set_quickfix = 1
 
 let g:ale_open_list = 1
-
+let g:ale_keep_list_window_open = 1
 "javascript linter: eslint
 let g:ale_fixers = {
             \ 'javascript': ['eslint'],
+            \ 'vue': ['eslint']
             \}
 
 let g:ale_fix_on_save = 1 "Fix files on save
+
+"Auto lint
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+let g:ale_linter_aliases = {'vue': 'css'}
+
+" vim-airline settings
+" fix fonts
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '▶'
+let g:airline_left_alt_sep = '❯'
+let g:airline_right_sep = '◀'
+let g:airline_right_alt_sep = '❮'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt': '>',
+    \ 'right' : '',
+    \ 'right_alt' : '<',
+    \ 'space' : ' '}
+
+" custom preset
+let g:tmuxline_preset = {
+    \'a'    : 'Session: #S',
+    \'b'    : 'Current window: #W',
+    \'c'    : '#H',
+    \'win'  : '#I #W',
+    \'cwin' : '#I #W',
+    \'x'    : '#W %R',
+    \'y'    : '#(date +"%Y-%m-%d %H:%M")',
+    \'z'    : '記得十二點前睡覺'}
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'jsformatter' " Show the whole path
+let g:airline_theme = 'tomorrow' " Set default theme as tomorrow
