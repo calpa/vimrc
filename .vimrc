@@ -18,6 +18,7 @@ Plugin 'w0rp/ale'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'posva/vim-vue'
 Plugin 'edkolev/tmuxline.vim'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end() "required
 filetype plugin indent on "required
@@ -79,7 +80,13 @@ endtry
 
 " autocmd vimenter * NERDTree
 
-set nu "Show line numbers
+:set nu rnu
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+augroup END
 
 "Smart way to move between windows (<ctrl>j etc.):
 map <C-j> <C-W>j
@@ -102,10 +109,6 @@ let g:ale_sign_warning = 'W>'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-"change from loclist to quickfix list
-"let g:ale_set_loclist = 0
-"let g:ale_set_quickfix = 1
 
 let g:ale_open_list = 1
 let g:ale_keep_list_window_open = 1
@@ -135,6 +138,11 @@ let g:airline_right_alt_sep = '❮'
 let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'jsformatter' " Show the whole path
+let g:airline_theme = 'tomorrow' " Set default theme as tomorrow
+
+" Tmuxline
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_separators = {
     \ 'left' : '',
@@ -154,6 +162,3 @@ let g:tmuxline_preset = {
     \'y'    : '#(date +"%Y-%m-%d %H:%M")',
     \'z'    : '記得十二點前睡覺'}
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'jsformatter' " Show the whole path
-let g:airline_theme = 'tomorrow' " Set default theme as tomorrow
