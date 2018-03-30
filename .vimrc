@@ -6,24 +6,8 @@ filetype off                  " required
 
 " set the runtime<Plug>PeepOpenath to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'pathogen.vim'
-Plugin 'The-NERD-tree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'w0rp/ale'
-Plugin 'wakatime/vim-wakatime'
-Plugin 'posva/vim-vue'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'tpope/vim-fugitive'
-
-call vundle#end() "required
 filetype plugin indent on "required
 
-" Vundle end
 " Vim-Plug Start
 call plug#begin('~/.vim/plugged')
 
@@ -35,6 +19,16 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
+Plug 'wakatime/vim-wakatime'
+Plug 'posva/vim-vue'
+Plug 'edkolev/tmuxline.vim'
+Plug 'tpope/vim-fugitive'
 
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'Galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
@@ -76,9 +70,10 @@ source ~/.vim_runtime/my_configs.vim
 catch
 endtry
 
-" execute pathogen#infect()
-
-" autocmd vimenter * NERDTree
+" Open NERDTree when vim is opened
+autocmd vimenter * NERDTree
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 :set nu rnu
 
