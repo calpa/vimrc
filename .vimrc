@@ -27,9 +27,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'wakatime/vim-wakatime'
 Plug 'posva/vim-vue'
-Plug 'edkolev/tmuxline.vim'
+" Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-fugitive'
 
+Plug 'liuchengxu/space-vim-dark'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'Galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
 Plug 'billyvg/deoplete-import-js'
@@ -55,9 +56,12 @@ let g:deoplete#enable_at_startup = 1
 call plug#end()
 " Vim-Plug End
 
+colorscheme space-vim-dark " Change theme to space-vim-dark
+
 " Fix bug
 let g:NERDTreeDirArrows = 1
 
+try
 set runtimepath+=~/.vim_runtime
 
 source ~/.vim_runtime/vimrcs/basic.vim
@@ -65,13 +69,16 @@ source ~/.vim_runtime/vimrcs/filetypes.vim
 source ~/.vim_runtime/vimrcs/plugins_config.vim
 source ~/.vim_runtime/vimrcs/extended.vim
 
-try
 source ~/.vim_runtime/my_configs.vim
 catch
 endtry
 
 " Open NERDTree when vim is opened
+try
 autocmd vimenter * NERDTree
+catch
+endtry
+
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -138,22 +145,22 @@ let g:airline#extensions#tabline#formatter = 'jsformatter' " Show the whole path
 let g:airline_theme = 'tomorrow' " Set default theme as tomorrow
 
 " Tmuxline
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_separators = {
-    \ 'left' : '',
-    \ 'left_alt': '>',
-    \ 'right' : '',
-    \ 'right_alt' : '<',
-    \ 'space' : ' '}
-
-" custom preset
-let g:tmuxline_preset = {
-    \'a'    : 'Session: #S',
-    \'b'    : 'Current window: #W',
-    \'c'    : '#H',
-    \'win'  : '#I #W',
-    \'cwin' : '#I #W',
-    \'x'    : '#W %R',
-    \'y'    : '#(date +"%Y-%m-%d %H:%M")',
-    \'z'    : '記得十二點前睡覺'}
+"let g:tmuxline_powerline_separators = 0
+"let g:tmuxline_separators = {
+"    \ 'left' : '',
+"    \ 'left_alt': '>',
+"    \ 'right' : '',
+"    \ 'right_alt' : '<',
+"    \ 'space' : ' '}
+"
+"" custom preset
+"let g:tmuxline_preset = {
+"    \'a'    : 'Session: #S',
+"    \'b'    : 'Current window: #W',
+"    \'c'    : '#H',
+"    \'win'  : '#I #W',
+"    \'cwin' : '#I #W',
+"    \'x'    : '#W %R',
+"    \'y'    : '#(date +"%Y-%m-%d %H:%M")',
+"    \'z'    : '記得十二點前睡覺'}
 
